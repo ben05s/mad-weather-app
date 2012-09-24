@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

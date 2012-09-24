@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp" >
+
+     <EditText
+         android:id="@+id/edit_city"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/obtainer_city"
+         android:inputType="text" />
+
+    <AutoCompleteTextView xmlns:android="http://schemas.android.com/apk/res/android" 
+		android:id="@+id/autocomplete_country"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:completionThreshold="2" 
+		android:hint="@string/obtainer_country"
+		android:inputType="text" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/obtainer_button" />
+
+    <ProgressBar 
+	    android:id="@+id/progressBar"
+	    style="?android:attr/progressBarStyleHorizontal"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:indeterminate="false"
+	    android:max="10"
+	    android:padding="10dip">            
+	</ProgressBar>
+	
+</LinearLayout>
