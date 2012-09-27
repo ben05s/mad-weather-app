@@ -1,6 +1,14 @@
 <resources>
-
     <string name="app_name">madEx01</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_weather_display">Weather App - Display</string>
+    <string name="title_activity_weather_obtain">Weather App - Input</string>
+
+    <string name="title_view_tv_temperature">Temperature: </string>
+    <string name="title_view_tv_condition">Condition: </string>
+    <string name="title_view_tv_city">City: </string>
+    <string name="title_view_btn_obtainActivity_call">Choose Country/City</string>
+   
     <string name="obtainer_city">City</string>
     <string name="obtainer_country">Country</string>
     <string name="title_activity_main">MyWeather</string>
