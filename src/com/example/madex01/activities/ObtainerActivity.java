@@ -29,7 +29,7 @@ public class ObtainerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.obtainer_activity);
 		
-		myAsyncTask = new MyAsyncTask();
+		myAsyncTask = new MyAsyncTask(this);
 		
 		/*
 		 * Set up UI components
@@ -89,7 +89,7 @@ public class ObtainerActivity extends Activity {
 			Log.d(TAG, "WeatherData data is null");
 		}
 
-		Intent intent = new Intent(getApplicationContext(), DisplayActivity.class);
+		Intent intent = new Intent(ObtainerActivity.this, DisplayActivity.class);
 
 		Bundle bundle = new Bundle();
 		bundle.putString(DisplayActivity.STRING_EXTRA_TEMPERATURE, data.getTemp());

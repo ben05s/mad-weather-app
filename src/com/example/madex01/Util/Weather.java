@@ -1,7 +1,3 @@
-/**
- * @author blabla
- */
-
 package com.example.madex01.Util;
 
 public class Weather {

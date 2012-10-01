@@ -19,6 +19,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentFactory;
 import org.dom4j.io.SAXReader;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -78,8 +79,12 @@ public class WeatherHelper {
 	  public Weather requestWeather(String country, String city) {
 		    this.city = city;
 		    this.country = country;
+
+		    /*this.city = "berlin";
+		    this.country = "germany";*/		    
+		    
 			String url = "http://query.yahooapis.com/v1/public/yql?q=select%20item.condition.text%2C%20item.condition.temp%2C%20units.temperature%20from%20weather.forecast%20where%20location%20in%20(%0A%20%20select%20id%20from%20weather.search%20where%20query%3D%22" +
-					city + "%2C%20" + country +
+					this.city + "%2C%20" + this.country +
 					"%22%0A)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=cbfunc";
 
 			HttpEntity entity = null;
@@ -157,11 +162,32 @@ public class WeatherHelper {
 	  private Weather getWeatherObjectFromJsonResponse(String jsonString) throws JSONException {
 		  JSONObject obj = new JSONObject(jsonString);
 			
-		  JSONObject channel = obj.getJSONObject("query").getJSONObject("results").getJSONObject("channel");
-				
-		  JSONObject condition = channel.getJSONObject("item").getJSONObject("condition");	
-				
-		  JSONObject units = channel.getJSONObject("units");
+		  JSONObject results = obj.getJSONObject("query").getJSONObject("results");
+		  if (results == null) {
+			  Log.e(TAG, "JSON results=null");
+			  return null;
+		  }
+		  
+		  int count = obj.getJSONObject("query").getInt("count");
+		  
+		  
+		  
+		 JSONObject condition = null;
+		 JSONObject units = null;
+		  if (count == 1) {
+			  JSONObject channel = results.getJSONObject("channel");
+			  condition = channel.getJSONObject("item").getJSONObject("condition");
+			  units = channel.getJSONObject("units");
+		  }  else if (count > 1) {
+			  JSONArray channelArray = results.getJSONArray("channel");
+			  condition = channelArray.getJSONObject(0).getJSONObject("item")
+					  .getJSONObject("condition");
+			  units = channelArray.getJSONObject(0).getJSONObject("units");
+		  } else {
+			  return null;
+		  }
+		 
+		  
 													
 		  long temp = condition.getLong("temp");
 		  String txt = condition.getString("text");
@@ -169,6 +195,6 @@ public class WeatherHelper {
 		  String temperatur = String.valueOf(temp);
 		  Log.i(TAG, "JSON RES: " + temp + tempUnit + " "  + txt );
 			
-		  return new Weather(city, country, temperatur, tempUnit, txt);
+		  return new Weather(this.city, this.country, temperatur, tempUnit, txt);
 	  }
 }
