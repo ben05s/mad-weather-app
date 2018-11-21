@@ -1,4 +1,3 @@
-madEx01
+Mobile App Development Excercise
 =======
-
-Project für Mobile App Übung
+Weather App for Android to display Live Weather Data for a given Location
