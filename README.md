@@ -1,3 +1,3 @@
-Mobile App Development Excercise
+Weather App
 =======
-Weather App for Android to display Live Weather Data for a given Location
+Weather App for Android Devices to display Live Weather Data for a given Location
